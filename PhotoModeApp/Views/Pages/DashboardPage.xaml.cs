@@ -18,5 +18,14 @@ namespace PhotoModeApp.Views.Pages
 
             InitializeComponent();
         }
+
+        public void Setup()
+        {
+            if (!Helpers.Config.GetPath().Equals(string.Empty))
+            {
+                PathAction.IsEnabled = true;
+                PathAction.Content = Helpers.Config.GetPath();
+            }
+        }
     }
 }
