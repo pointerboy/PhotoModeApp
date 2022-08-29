@@ -14,21 +14,15 @@
     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
 
-    <Grid Margin="56,0" VerticalAlignment="Top">
+    <Grid Margin="56,0,56,0" VerticalAlignment="Top" Height="155">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+        <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Height="53" Click="PathAction_Click"/>
         <ui:Button
-            Grid.Column="0"
-            Command="{Binding ViewModel.OnCounterIncrementCommand, Mode=OneWay}"
-            Content="Click me!"
-            Icon="Fluent24" />
-        <TextBlock
-            Grid.Column="1"
-            Margin="12,0,0,0"
-            VerticalAlignment="Center"
-            Text="{Binding ViewModel.Counter, Mode=OneWay}" />
+            Content="Convert&#xA;"
+            Icon="Fluent24" Margin="0,90,365,0" Height="42" Width="205" RenderTransformOrigin="-0.032,0.484" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.ColumnSpan="2" />
     </Grid>
 </ui:UiPage>

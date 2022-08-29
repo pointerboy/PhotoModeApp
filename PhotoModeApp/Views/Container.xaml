@@ -8,8 +8,8 @@
     xmlns:pages="clr-namespace:PhotoModeApp.Views.Pages"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
-    Width="1100"
-    Height="650"
+    Width="400"
+    Height="400"
     d:DataContext="{d:DesignInstance local:Container,
                                      IsDesignTimeCreatable=True}"
     ExtendsContentIntoTitleBar="True"
