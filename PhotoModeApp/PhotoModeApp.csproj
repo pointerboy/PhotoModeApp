@@ -14,6 +14,14 @@
     <Content Include="applicationIcon.ico" />
   </ItemGroup>
 
+	<Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
+		<ItemGroup>
+			<FilteredAnalyzer Include="@(Analyzer-&gt;Distinct())" />
+			<Analyzer Remove="@(Analyzer)" />
+			<Analyzer Include="@(FilteredAnalyzer)" />
+		</ItemGroup>
+	</Target>
+
   <ItemGroup>
     <PackageReference Include="WPF-UI" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
