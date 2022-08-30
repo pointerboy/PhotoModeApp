@@ -2,13 +2,11 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Windows;
 using Windows.Foundation.Collections;
 using Wpf.Ui.Common.Interfaces;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
-using Wpf.Ui.Mvvm.Services;
 
 namespace PhotoModeApp.Views.Pages
 {

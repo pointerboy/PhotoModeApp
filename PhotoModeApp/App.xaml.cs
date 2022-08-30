@@ -1,14 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Toolkit.Uwp.Notifications;
 using PhotoModeApp.Models;
 using PhotoModeApp.Services;
 using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
-using Windows.Foundation.Collections;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 
@@ -17,7 +15,7 @@ namespace PhotoModeApp.Views
             get;
         }
 
-        public Container(ViewModels.ContainerViewModel viewModel, IPageService pageService, 
+        public Container(ViewModels.ContainerViewModel viewModel, IPageService pageService,
             INavigationService navigationService,
             IDialogService dialogService)
         {
