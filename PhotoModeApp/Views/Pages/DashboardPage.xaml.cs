@@ -2,13 +2,10 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Foundation.Collections;
 using Wpf.Ui.Common.Interfaces;
-using Wpf.Ui.Controls.Interfaces;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace PhotoModeApp.Views.Pages
 {
@@ -106,7 +103,7 @@ namespace PhotoModeApp.Views.Pages
 
             if (processCount == totalNumberOfFiles) return (int)PROCESSING_STATUS.Done;
             return processCount;
-          
+
         }
 
         private async void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
