@@ -46,24 +46,28 @@ namespace PhotoModeApp.Views.Pages
             };
         }
 
-        public void Setup()
+        public async Task SetupAsync()
         {
-            if (!Helpers.Config.GetPath().Equals(string.Empty))
+            await Task.Run(() =>
             {
-                PathAction.IsEnabled = true;
-                PathAction.Content = Helpers.Config.GetPath();
-            }
+                if (!Helpers.Config.GetPath().Equals(string.Empty))
+                {
+                    PathAction.IsEnabled = true;
+                    PathAction.Content = Helpers.Config.GetPath();
+                }
+            });
         }
 
-        private void PathAction_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void PathAction_ClickAsync(object sender, System.Windows.RoutedEventArgs e)
         {
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                Helpers.Config.WritePath(dialog.SelectedPath);
-                PathAction.Content = Helpers.Config.GetPath();
+                await Task.Run(() => Helpers.Config.WritePath(dialog.SelectedPath));
+                PathAction.Content = dialog.SelectedPath;
             }
         }
+
 
         private async Task<int> ProcessPicturesAsync(IProgress<int> progress)
         {
