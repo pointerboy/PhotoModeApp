@@ -7,11 +7,12 @@
     <LangVersion>10.0</LangVersion>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Capture-removebg-preview__1_-removebg-preview.ico</ApplicationIcon>
+    <ApplicationIcon>appicon.ico</ApplicationIcon>
+    <AssemblyName>Photo Mode Converter</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Capture-removebg-preview__1_-removebg-preview.ico" />
+    <Content Include="appicon.ico" />
   </ItemGroup>
 
 	<Target Name="RemoveDuplicateAnalyzers" BeforeTargets="CoreCompile">
