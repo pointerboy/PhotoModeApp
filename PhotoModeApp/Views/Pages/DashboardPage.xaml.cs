@@ -106,6 +106,7 @@ namespace PhotoModeApp.Views.Pages
 
         private async void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            ConvertButton.IsEnabled = false;
             ProgressText.Visibility = Visibility.Visible;
 
             int proc = await ProcessPicturesAsync(new Progress<int>(percent => UpdateProgressUI(percent)));
@@ -122,7 +123,7 @@ namespace PhotoModeApp.Views.Pages
                         .SetBackgroundActivation())
                     .Show();
 
-                ConvertButton.Content = "Convert";
+                ConvertButton.IsEnabled = true;
             }
         }
 
