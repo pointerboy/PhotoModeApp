@@ -8,8 +8,11 @@
     xmlns:pages="clr-namespace:PhotoModeApp.Views.Pages"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
+    SizeToContent="WidthAndHeight" ResizeMode="NoResize"
     Width="400"
     Height="400"
+    MaxWidth="400"
+    MaxHeight="300"
     d:DataContext="{d:DesignInstance local:Container,
                                      IsDesignTimeCreatable=True}"
     ExtendsContentIntoTitleBar="True"
@@ -17,6 +20,7 @@
     WindowCornerPreference="Round"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
