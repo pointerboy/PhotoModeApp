@@ -22,12 +22,8 @@
 
         <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Height="53" Click="PathAction_Click"/>
         <ui:Button
-            Content="Convert&#xA;"
-            Icon="Fluent24" Margin="0,68,0,0" Height="30" Width="204" RenderTransformOrigin="-0.032,0.484" VerticalAlignment="Top" Click="Button_Click" Grid.RowSpan="1" IsDefault="True" />
-        <ui:Dialog ButtonLeftAppearance="Primary"
-                   Name="FinishDialog"
-                   ButtonLeftName="Save"
-                   DialogHeight="250"
-                   Content="Dialog" HorizontalAlignment="Left" Margin="39,220,0,0" VerticalAlignment="Top"/>
+            Icon="Fluent24" Margin="0,68,0,0" Height="30" Width="204" RenderTransformOrigin="-0.032,0.484" VerticalAlignment="Top" Click="Button_Click" Grid.RowSpan="1" IsDefault="True" >
+            <ui:DropDownButton Content="DropDownButton" VerticalAlignment="Top"/>
+        </ui:Button>
     </Grid>
 </ui:UiPage>
