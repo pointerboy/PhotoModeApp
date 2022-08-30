@@ -29,7 +29,7 @@ namespace PhotoModeApp.ViewModels
             var random = new Random();
             var colorCollection = new List<DataColor>();
 
-            for (int i = 0; i < 8192; i++)
+           /* for (int i = 0; i < 8192; i++)
                 colorCollection.Add(new DataColor
                 {
                     Color = new SolidColorBrush(Color.FromArgb(
@@ -40,7 +40,7 @@ namespace PhotoModeApp.ViewModels
                 });
 
             Colors = colorCollection;
-
+           */
             _isInitialized = true;
         }
     }
