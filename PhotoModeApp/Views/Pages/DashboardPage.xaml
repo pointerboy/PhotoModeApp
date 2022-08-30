@@ -20,7 +20,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Height="53" Click="PathAction_ClickAsync"/>
+        <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="295" Height="53" Click="PathAction_ClickAsync"/>
         <ui:Button
             Name="ConvertButton"
             Content="Convert"
