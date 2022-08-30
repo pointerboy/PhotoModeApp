@@ -70,7 +70,6 @@ namespace PhotoModeApp.Views.Pages
 
         private async Task<int> ProcessPicturesAsync(IProgress<int> progress)
         {
-            totalNumberOfFiles = Helpers.Win32Files.GetFileCount(Helpers.Config.GetPath(), true);
             int processCount = await Task.Run<int>(() =>
             {
                 int tempCount = 0;
@@ -104,6 +103,21 @@ namespace PhotoModeApp.Views.Pages
 
         private async void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            totalNumberOfFiles = Helpers.Win32Files.GetFileCount(Helpers.Config.GetPath(), true);
+
+            if (totalNumberOfFiles < 1)
+            {
+                new ToastContentBuilder()
+                  .AddArgument("action", "viewConversation")
+                  .AddArgument("conversationId", 9813)
+                  .AddText("Could not find any photos.")
+                  .AddButton(new ToastButton()
+                      .SetContent("Show")
+                      .SetBackgroundActivation())
+                  .Show();
+                return;
+            }
+
             ConvertButton.IsEnabled = false;
             ProgressText.Visibility = Visibility.Visible;
 
