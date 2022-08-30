@@ -18,5 +18,10 @@ namespace PhotoModeApp.Views.Pages
 
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.rdr2mods.com/profile/12310-pointerboy/");
+        }
     }
 }

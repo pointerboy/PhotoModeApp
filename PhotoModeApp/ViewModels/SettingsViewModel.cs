@@ -29,7 +29,7 @@ namespace PhotoModeApp.ViewModels
         private void InitializeViewModel()
         {
             CurrentTheme = Wpf.Ui.Appearance.Theme.GetAppTheme();
-            AppVersion = $"PhotoModeApp - {GetAssemblyVersion()}";
+            AppVersion = $"Photo Mode Application - {GetAssemblyVersion()}";
 
             _isInitialized = true;
         }

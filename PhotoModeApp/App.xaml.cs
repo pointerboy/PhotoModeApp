@@ -42,6 +42,9 @@ namespace PhotoModeApp
                 // Service containing navigation, same as INavigationWindow... but without window
                 services.AddSingleton<INavigationService, NavigationService>();
 
+                // Dialog service
+                services.AddSingleton<IDialogService, DialogService>();
+
                 // Main window container with navigation
                 services.AddScoped<INavigationWindow, Views.Container>();
                 services.AddScoped<ViewModels.ContainerViewModel>();

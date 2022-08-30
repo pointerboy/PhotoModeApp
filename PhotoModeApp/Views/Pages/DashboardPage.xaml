@@ -20,9 +20,14 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Height="53" Click="PathAction_Click"/>
+        <ui:CardAction Name="PathAction" Content="Set Path" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="394" Height="53" Click="PathAction_Click"/>
         <ui:Button
             Content="Convert&#xA;"
-            Icon="Fluent24" Margin="0,90,365,0" Height="42" Width="205" RenderTransformOrigin="-0.032,0.484" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+            Icon="Fluent24" Margin="0,90,365,0" Height="42" Width="205" RenderTransformOrigin="-0.032,0.484" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="Button_Click" />
+        <ui:Dialog ButtonLeftAppearance="Primary"
+                   Name="FinishDialog"
+                   ButtonLeftName="Save"
+                   DialogHeight="250"
+                   Content="Dialog" HorizontalAlignment="Left" Margin="39,220,0,0" VerticalAlignment="Top"/>
     </Grid>
 </ui:UiPage>

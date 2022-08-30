@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 
@@ -16,7 +17,9 @@ namespace PhotoModeApp.Views
             get;
         }
 
-        public Container(ViewModels.ContainerViewModel viewModel, IPageService pageService, INavigationService navigationService)
+        public Container(ViewModels.ContainerViewModel viewModel, IPageService pageService, 
+            INavigationService navigationService,
+            IDialogService dialogService)
         {
             ViewModel = viewModel;
             DataContext = this;
@@ -57,7 +60,7 @@ namespace PhotoModeApp.Views
             base.OnClosed(e);
 
             // Make sure that closing this window will begin the process of closing the application.
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }
