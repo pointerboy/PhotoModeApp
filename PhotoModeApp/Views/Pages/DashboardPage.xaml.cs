@@ -17,8 +17,6 @@ namespace PhotoModeApp.Views.Pages
     /// </summary>
     public partial class DashboardPage : INavigableView<ViewModels.DashboardViewModel>
     {
-        private readonly IDialogControl _dialogControl;
-
         private enum PROCESSING_STATUS
         {
             Done = 999
