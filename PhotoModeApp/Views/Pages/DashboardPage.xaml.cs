@@ -29,7 +29,7 @@ namespace PhotoModeApp.Views.Pages
 
         private int totalNumberOfFiles;
 
-        public DashboardPage(ViewModels.DashboardViewModel viewModel, IDialogService dialogService)
+        public DashboardPage(ViewModels.DashboardViewModel viewModel)
         {
             ViewModel = viewModel;
 
