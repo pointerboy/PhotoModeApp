@@ -83,7 +83,7 @@ namespace PhotoModeApp.Views.Pages
 
                 converterProcess.StartInfo.FileName = "ragephoto-extract.exe";
 
-                foreach (var image in Directory.GetFiles(Helpers.Config.GetPath(), "*.*", SearchOption.AllDirectories))
+                foreach (var image in Directory.GetFiles(Helpers.Config.GetPath(), "PRDR3*", SearchOption.AllDirectories))
                 {
                     converterProcess.StartInfo.Arguments = image + " " + image + ".jpg";
                     converterProcess.Start();

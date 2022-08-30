@@ -23,6 +23,9 @@
             FontSize="20"
             FontWeight="Medium"
             Text="Personalization" />
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,4">
+            <ui:Button Content="Go to application webpage" IsCancel="True" Click="Button_Click" Height="35" Width="209"/>
+        </Grid>
         <TextBlock Margin="0,12,0,0" Text="Theme" />
         <RadioButton
             Margin="0,12,0,0"
@@ -45,6 +48,5 @@
             FontWeight="Medium"
             Text="About PhotoModeApp" />
         <TextBlock Margin="0,12,0,0" Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
-        <ui:Button Content="Go to application webpage" IsCancel="True" Click="Button_Click"/>
     </StackPanel>
 </ui:UiPage>
