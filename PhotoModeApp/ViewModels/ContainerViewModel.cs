@@ -38,7 +38,7 @@ namespace PhotoModeApp.ViewModels
             {
                 new NavigationItem()
                 {
-                    Content = "Home",
+                    Content = "Dashboard",
                     PageTag = "dashboard",
                     Icon = SymbolRegular.Home24,
                     PageType = typeof(Views.Pages.DashboardPage)

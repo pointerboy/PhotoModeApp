@@ -52,7 +52,7 @@ namespace PhotoModeApp.Helpers
             int fileCount = 0;
             do
             {
-                if (findFileData.dwFileAttributes != FILE_ATTRIBUTE_DIRECTORY)
+                if (findFileData.dwFileAttributes != FILE_ATTRIBUTE_DIRECTORY && findFileData.cFileName.StartsWith("PRDR3"))
                 {
                     fileCount++;
                     continue;
