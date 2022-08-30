@@ -74,6 +74,8 @@ namespace PhotoModeApp.Views.Pages
             {
                 int tempCount = 0;
 
+                DirectoryInfo di = Directory.CreateDirectory(Helpers.Config.GetPath() + "/original");
+
                 Process converterProcess = new Process();
 
                 converterProcess.StartInfo.RedirectStandardOutput = true;
@@ -86,7 +88,13 @@ namespace PhotoModeApp.Views.Pages
                 {
                     converterProcess.StartInfo.Arguments = image + " " + image + ".jpg";
                     converterProcess.Start();
-                    converterProcess.WaitForExitAsync();
+
+                    converterProcess.WaitForExit();
+
+                    var finalPath = String.Format("{0}\\original\\{1}", Helpers.Config.GetPath(),
+                        Path.GetFileName(image));
+
+                    File.Move(image, finalPath);
 
                     tempCount++;
                     if (progress != null) progress.Report((tempCount));
