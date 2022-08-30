@@ -35,12 +35,10 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Margin="42,0,0,0"
-            Icon="pack://application:,,,/Assets/applicationIcon-256.png">
+            Margin="42,0,0,0">
             <ui:TitleBar.Tray>
                 <ui:NotifyIcon
                     FocusOnLeftClick="True"
-                    Icon="pack://application:,,,/Assets/applicationIcon-256.png"
                     MenuOnRightClick="True"
                     TooltipText="PhotoModeApp">
                     <ui:NotifyIcon.Menu>
