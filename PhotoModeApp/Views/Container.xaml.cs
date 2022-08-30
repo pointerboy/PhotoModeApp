@@ -26,6 +26,7 @@ namespace PhotoModeApp.Views
             SetPageService(pageService);
 
             navigationService.SetNavigationControl(RootNavigation);
+
         }
 
         #region INavigationWindow methods

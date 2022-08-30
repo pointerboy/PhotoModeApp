@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity version="1.0.0.0" name="PhotoModeApp.app"/>
+	<SquirrelAwareVersion xmlns="urn:schema-squirrel-com:asm.v1">1</SquirrelAwareVersion>
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
@@ -63,6 +64,7 @@
   <!-- Enable themes for Windows common controls and dialogs (Windows XP and later) -->
   <dependency>
       <dependentAssembly>
+		  
           <assemblyIdentity
               type="win32"
               name="Microsoft.Windows.Common-Controls"

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PhotoModeApp.Models;
 using PhotoModeApp.Services;
+using Squirrel;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -76,8 +77,29 @@ namespace PhotoModeApp
         /// </summary>
         private async void OnStartup(object sender, StartupEventArgs e)
         {
+            SquirrelAwareApp.HandleEvents(
+              onInitialInstall: OnAppInstall,
+              onAppUninstall: OnAppUninstall,
+              onEveryRun: OnAppRun);
+
             await _host.StartAsync();
         }
+
+        private static void OnAppInstall(SemanticVersion version, IAppTools tools)
+        {
+            tools.CreateShortcutForThisExe(ShortcutLocation.StartMenu | ShortcutLocation.Desktop);
+        }
+
+        private static void OnAppUninstall(SemanticVersion version, IAppTools tools)
+        {
+            tools.RemoveShortcutForThisExe(ShortcutLocation.StartMenu | ShortcutLocation.Desktop);
+        }
+
+        private static void OnAppRun(SemanticVersion version, IAppTools tools, bool firstRun)
+        {
+            tools.SetProcessAppUserModelId();
+        }
+
 
         /// <summary>
         /// Occurs when the application is closing.
