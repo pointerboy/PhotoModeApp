@@ -14,31 +14,21 @@
     d:DesignWidth="800"
     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
-    <ui:UiPage.Resources>
-        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
-    </ui:UiPage.Resources>
 
-    <StackPanel Margin="56,0">
+    <Grid VerticalAlignment="Top" Height="448" Margin="0,2,0,0">
+        <TextBlock Text="Theme" Width="49" Margin="25,32,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <TextBlock
             FontSize="20"
             FontWeight="Medium"
-            Text="Personalization" />
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,4"/>
-        <TextBlock Text="Theme" />
-        <RadioButton
-            Margin="0,12,0,0"
-            Command="{Binding ViewModel.OnChangeThemeCommand, Mode=OneWay}"
-            CommandParameter="theme_light"
-            Content="Light"
-            GroupName="themeSelect"
-            IsChecked="{Binding ViewModel.CurrentTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}" />
-        <RadioButton
-            Margin="0,8,0,0"
-            Command="{Binding ViewModel.OnChangeThemeCommand, Mode=OneWay}"
-            CommandParameter="theme_dark"
-            Content="Dark"
-            GroupName="themeSelect"
-            IsChecked="{Binding ViewModel.CurrentTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}" />
-        <TextBlock TextWrapping="Wrap" Text="Developed by pointerboy" Margin="0,7,0,0"/>
-    </StackPanel>
+            Text="Personalization" Margin="25,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock TextWrapping="Wrap" Text="© 2022 pointerboy." Margin="211,48,0,0" Width="138" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"/>
+        <ComboBox x:Name="ThemeSelectionDropDown" HorizontalAlignment="Left" Margin="25,53,0,0" VerticalAlignment="Top" Width="120" IsEditable="True"/>
+        <ui:Hyperlink Content="Source Code" HorizontalAlignment="Left" Margin="211,69,0,0" VerticalAlignment="Top" NavigateUri="https://github.com/pointerboy/PhotoModeApp" Width="138" Icon="Empty"/>
+        <ui:Hyperlink Content="Mod Page" HorizontalAlignment="Left" Margin="211,107,0,0" VerticalAlignment="Top" NavigateUri="https://www.rdr2mods.com/downloads/rdr2/tools/325-photo-mode-converter/" Width="138" Icon="Empty"/>
+        <TextBlock
+            FontSize="20"
+            FontWeight="Medium"
+            Text="About" Margin="252,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock x:Name="VersionText" TextWrapping="Wrap" Text="Version: " Margin="211,27,0,0" Width="138" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"/>
+    </Grid>
 </ui:UiPage>

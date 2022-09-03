@@ -1,7 +1,9 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using PhotoModeApp.Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Foundation.Collections;
@@ -26,24 +28,16 @@ namespace PhotoModeApp.Views.Pages
 
         private int totalNumberOfFiles;
 
+        private int filesSkipped = 0;
+
+        private bool isAnyFilesSkipped;
+
         public DashboardPage(ViewModels.DashboardViewModel viewModel)
         {
             ViewModel = viewModel;
 
             InitializeComponent();
             PathAction.Content = Helpers.Config.GetPath();
-
-
-            ToastNotificationManagerCompat.OnActivated += toastArgs =>
-            {
-                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
-                ValueSet userInput = toastArgs.UserInput;
-
-                Application.Current.Dispatcher.Invoke(delegate
-                {
-                    Process.Start("explorer.exe", Helpers.Config.GetPath());
-                });
-            };
         }
 
         public async Task SetupAsync()
@@ -75,27 +69,26 @@ namespace PhotoModeApp.Views.Pages
             {
                 int tempCount = 0;
 
-                DirectoryInfo di = Directory.CreateDirectory(Helpers.Config.GetPath() + "/original");
+                DirectoryInfo di = Directory.CreateDirectory(Helpers.Config.GetPath() + "/ConvertedImages");
 
-                Process converterProcess = new Process();
-
-                converterProcess.StartInfo.RedirectStandardOutput = true;
-                converterProcess.StartInfo.UseShellExecute = false;
-                converterProcess.StartInfo.CreateNoWindow = true;
-
-                converterProcess.StartInfo.FileName = "ragephoto-extract.exe";
-
-                foreach (var image in Directory.GetFiles(Helpers.Config.GetPath(), "PRDR3*", SearchOption.AllDirectories))
+                foreach (var image in Directory.GetFiles(Helpers.Config.GetPath(), "PRDR3*", SearchOption.TopDirectoryOnly))
                 {
-                    converterProcess.StartInfo.Arguments = image + " " + image + ".jpg";
-                    converterProcess.Start();
+                    RagePhoto.Convert(image);
 
-                    converterProcess.WaitForExit();
+                    string convertedFileName = image + ".jpg";
 
-                    var finalPath = String.Format("{0}\\original\\{1}", Helpers.Config.GetPath(),
-                        Path.GetFileName(image));
-
-                    File.Move(image, finalPath);
+                    var finalPath = String.Format("{0}\\ConvertedImages\\{1}", Helpers.Config.GetPath(),
+                        Path.GetFileName(convertedFileName));
+                    try 
+                    { 
+                        File.Move(convertedFileName, finalPath); 
+                    }
+                    catch (IOException)
+                    {
+                        File.Delete(convertedFileName);
+                        isAnyFilesSkipped = true;
+                        filesSkipped++;
+                    }
 
                     tempCount++;
                     if (progress != null) progress.Report((tempCount));
@@ -116,41 +109,40 @@ namespace PhotoModeApp.Views.Pages
 
             if (totalNumberOfFiles < 1)
             {
-                new ToastContentBuilder()
-                  .AddArgument("action", "viewConversation")
-                  .AddArgument("conversationId", 9813)
-                  .AddText("Could not find any photos.")
-                  .AddButton(new ToastButton()
-                      .SetContent("Show")
-                      .SetBackgroundActivation())
-                  .Show();
+                StatusLabel.Text = "Could not find any photos.";
                 return;
             }
 
             ConvertButton.IsEnabled = false;
-            ProgressText.Visibility = Visibility.Visible;
+            StatusLabel.Visibility = Visibility.Visible;
 
             int proc = await ProcessPicturesAsync(new Progress<int>(percent => UpdateProgressUI(percent)));
 
             if (proc == (int)PROCESSING_STATUS.Done)
             {
-                new ToastContentBuilder()
-                    .AddArgument("action", "viewConversation")
-                    .AddArgument("conversationId", 9813)
-                    .AddText("Photos successfully converted! 🎉")
-                    .AddButton(new ToastButton()
-                        .SetContent("Show")
-                        .AddArgument("action", "reply")
-                        .SetBackgroundActivation())
-                    .Show();
+                if (!isAnyFilesSkipped)
+                {
+                    StatusLabel.Text = "Photos successfully converted! 🎉";
+                    ConvertButton.IsEnabled = true;
+                    return;
+                }
 
+                if (filesSkipped == totalNumberOfFiles)
+                {
+                    StatusLabel.Text = $"No photos were converted.\nAll file(s) were skipped because their converted versions of the same name\nalready exist in the ConvertedImages folder.";
+                    ConvertButton.IsEnabled = true;
+                    return;
+                }
+
+                StatusLabel.Text = $"Photos successfully converted! 🎉\n{filesSkipped}/{totalNumberOfFiles} file(s) were skipped because their converted versions of the same\nname already exist in the ConvertedImages folder.";
                 ConvertButton.IsEnabled = true;
+                return;
             }
         }
 
         private void UpdateProgressUI(int value)
         {
-            ProgressText.Text = String.Format("Procesing: {0}/{1}", value, totalNumberOfFiles);
+            StatusLabel.Text = String.Format("Procesing: {0}/{1}", value, totalNumberOfFiles);
         }
     }
 }
