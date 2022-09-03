@@ -9,7 +9,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>appicon.ico</ApplicationIcon>
     <AssemblyName>Photo Mode Converter</AssemblyName>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <FileVersion>1.1.0.0</FileVersion>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
   </PropertyGroup>
