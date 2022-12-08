@@ -116,7 +116,9 @@ namespace PhotoModeApp
         /// </summary>
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            // For more info see https://docs.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=windowsdesktop-6.0
+            MessageBox.Show(e.Exception.ToString() + "\n\nThe application has been stopped to prevent further issues. The app will now close.", "An error has occured.", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
+            Application.Current.Shutdown();
         }
     }
 }

@@ -9,10 +9,11 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
     SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-    Width="400"
-    Height="400"
-    MaxWidth="400"
-    MaxHeight="300"
+    Width="525"
+    Height="200"
+    MaxWidth="525"
+    MinWidth="525"
+    MaxHeight="200"
     d:DataContext="{d:DesignInstance local:Container,
                                      IsDesignTimeCreatable=True}"
     ExtendsContentIntoTitleBar="True"
@@ -20,7 +21,7 @@
     WindowCornerPreference="Round"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -62,14 +63,14 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Frame x:Name="RootFrame" Grid.Row="1" />
+                    <Frame x:Name="RootFrame" Margin="0,53,0,0" Grid.Row="1" />
                     <ui:Breadcrumb
                         Grid.Row="0"
-                        Margin="56,32"
+                        Margin="24,10,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         FontSize="28"
-                        Navigation="{Binding ElementName=RootNavigation, Mode=OneWay}" />
+                        Navigation="{Binding ElementName=RootNavigation, Mode=OneWay}" Grid.RowSpan="2" />
                 </Grid>
             </Border>
         </Grid>
