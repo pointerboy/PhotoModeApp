@@ -105,6 +105,8 @@ namespace PhotoModeApp.Views.Pages
 
         private async void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (Helpers.Config.GetPath().Length > 0) return;
+
             totalNumberOfFiles = Helpers.Win32Files.GetFileCount(Helpers.Config.GetPath(), true);
 
             if (totalNumberOfFiles < 1)
