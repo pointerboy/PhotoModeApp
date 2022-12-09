@@ -3,7 +3,6 @@ using PhotoModeApp.Helpers;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Foundation.Collections;
@@ -32,12 +31,24 @@ namespace PhotoModeApp.Views.Pages
 
         private bool isAnyFilesSkipped;
 
+
         public DashboardPage(ViewModels.DashboardViewModel viewModel)
         {
             ViewModel = viewModel;
 
             InitializeComponent();
             PathAction.Content = Helpers.Config.GetPath();
+
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+                ValueSet userInput = toastArgs.UserInput;
+
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    Process.Start("explorer.exe", Helpers.Config.GetPath());
+                });
+            };
         }
 
         public async Task SetupAsync()
@@ -79,9 +90,9 @@ namespace PhotoModeApp.Views.Pages
 
                     var finalPath = String.Format("{0}\\ConvertedImages\\{1}", Helpers.Config.GetPath(),
                         Path.GetFileName(convertedFileName));
-                    try 
-                    { 
-                        File.Move(convertedFileName, finalPath); 
+                    try
+                    {
+                        File.Move(convertedFileName, finalPath);
                     }
                     catch (IOException)
                     {
@@ -105,9 +116,9 @@ namespace PhotoModeApp.Views.Pages
 
         private async void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (Helpers.Config.GetPath().Length > 0) return;
+            if (Helpers.Config.GetPath().Length < 1) return;
 
-            totalNumberOfFiles = Helpers.Win32Files.GetFileCount(Helpers.Config.GetPath(), true);
+            totalNumberOfFiles = Helpers.Win32Files.GetFileCount(Helpers.Config.GetPath(), false);
 
             if (totalNumberOfFiles < 1)
             {
@@ -126,6 +137,15 @@ namespace PhotoModeApp.Views.Pages
                 {
                     StatusLabel.Text = "Photos successfully converted! 🎉";
                     ConvertButton.IsEnabled = true;
+
+                    new ToastContentBuilder()
+                        .AddArgument("action", "viewConversation")
+                        .AddArgument("conversationId", 9813)
+                        .AddText("Photos successfully converted! 🎉")
+                        .AddButton(new ToastButton()
+                        .SetContent("Show")
+                        .SetBackgroundActivation())
+                        .Show();
                     return;
                 }
 

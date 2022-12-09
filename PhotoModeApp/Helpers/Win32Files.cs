@@ -38,7 +38,7 @@ namespace PhotoModeApp.Helpers
 
         public static int GetFileCount(string dir, bool includeSubdirectories = false)
         {
-            string searchPattern = Path.Combine(dir, "PRDR3*.");
+            string searchPattern = Path.Combine(dir, "PRDR3*");
 
             var findFileData = new WIN32_FIND_DATA();
             IntPtr hFindFile = FindFirstFile(searchPattern, ref findFileData);
